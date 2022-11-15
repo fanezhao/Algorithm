@@ -28,6 +28,11 @@ public class Q191_HammingWeight {
         return count;
     }
 
+    /**
+     * n & (n−1)，其运算结果恰为把 n 的二进制位中的最低位的 1 变为 0 之后的结果。
+     * @param num
+     * @return
+     */
     public static int hammingWeight2(int num) {
         int count = 0;
         while (num != 0) {
