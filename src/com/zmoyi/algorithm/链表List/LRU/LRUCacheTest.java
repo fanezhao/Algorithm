@@ -1,4 +1,4 @@
-package com.zmoyi.algorithm.list.lru;
+package com.zmoyi.algorithm.链表List.LRU;
 
 public class LRUCacheTest {
 

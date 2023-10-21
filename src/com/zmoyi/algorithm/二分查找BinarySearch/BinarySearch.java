@@ -1,4 +1,4 @@
-package com.zmoyi.algorithm.binarySearch;
+package com.zmoyi.algorithm.二分查找BinarySearch;
 
 /**
  * 二分查找算法
