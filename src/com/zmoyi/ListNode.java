@@ -17,6 +17,15 @@ public class ListNode {
         this.next = next;
     }
 
+    public void add(ListNode node) {
+        if (this.next != null) {
+            node.next = this.next;
+            this.next = node;
+        } else {
+            this.next = node;
+        }
+    }
+
     public void print() {
         System.out.printf("%s%n", this.val);
         ListNode temp = this.next;
