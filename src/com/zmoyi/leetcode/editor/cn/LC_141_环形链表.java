@@ -69,7 +69,8 @@ public class LC_141_环形链表 {
         head.next = two;
         two.next = head;
 
-        System.out.println(solution.hasCycle1(head));
+        System.out.println(solution.hasCycle3(head));
+        System.out.println(solution.cycleLength(head));
 
     }
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -153,6 +154,54 @@ public class Solution {
         }
         return false;
     }
+
+    /**
+     * 小灰算法中的解法
+     * @param head
+     * @return
+     */
+    public Boolean hasCycle3(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 求环长度
+     * @param head
+     * @return
+     */
+    public int cycleLength(ListNode head) {
+        ListNode fast = head, slow = head;
+        boolean hasCycle = false;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                hasCycle = true;
+                break;
+            }
+        }
+        if (!hasCycle) {
+            return 0;
+        }
+        // 当两个指针在同一点相交时，让它们继续跑，直到下次相遇，此时对于慢指针走的长度刚好是一圈
+        int length = 0;
+        do {
+            fast = fast.next.next;
+            slow = slow.next;
+            length++;
+        } while (fast != slow);
+        return length;
+    }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

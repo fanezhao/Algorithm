@@ -88,7 +88,7 @@ public class LC_142_环形链表2入环点 {
         }
         tail.next = idx24;
 
-        System.out.println(solution.detectCycle2(temp.next).val);
+        System.out.println(solution.detectCycle3(temp.next).val);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 /**
@@ -160,6 +160,35 @@ public class Solution {
             slow = slow.next;
         }
 
+        return fast;
+    }
+
+    /**
+     * 小灰算法中的解法
+     * @param head
+     * @return
+     */
+    public ListNode detectCycle3(ListNode head) {
+        ListNode fast = head, slow = head;
+        boolean hasCycle = false;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                hasCycle = true;
+                break;
+            }
+        }
+
+        if (!hasCycle) {
+            return null;
+        }
+
+        fast = head;
+        while (fast != slow) {
+            fast = fast.next;
+            slow = slow.next;
+        }
         return fast;
     }
 }
