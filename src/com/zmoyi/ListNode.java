@@ -17,6 +17,10 @@ public class ListNode {
         this.next = next;
     }
 
+    /**
+     * 在当前节点后增加一个新节点
+     * @param node
+     */
     public void add(ListNode node) {
         if (this.next != null) {
             node.next = this.next;
@@ -24,6 +28,19 @@ public class ListNode {
         } else {
             this.next = node;
         }
+    }
+
+    /**
+     * 删除当前节点的后一个节点并返回
+     * @return
+     */
+    public ListNode removeAfter() {
+        ListNode removedNode = this.next;
+        if (removedNode == null) {
+            return null;
+        }
+        this.next = this.next.next;
+        return removedNode;
     }
 
     public void print() {
