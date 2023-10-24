@@ -13,7 +13,7 @@ import java.util.Stack;
 public class Calculator {
 
 
-    private final Map<Character, Integer> map = new HashMap<>() {
+    private final Map<Character, Integer> map = new HashMap<Character, Integer>() {
         {
             put('+', 1);
             put('-', 1);
@@ -63,12 +63,17 @@ public class Calculator {
     private Integer cal(Character num1, Character num2, Character symbol) {
         int n1 = Character.getNumericValue(num1);
         int n2 = Character.getNumericValue(num2);
-        return switch (symbol) {
-            case '+' -> n1 + n2;
-            case '-' -> n1 - n2;
-            case '*' -> n1 * n2;
-            case '/' -> n1 / n2;
-            default -> null;
-        };
+        switch (symbol) {
+            case '+':
+                return n1 + n2;
+            case '-':
+                return n1 - n2;
+            case '*':
+                return n1 * n2;
+            case '/':
+                return n1 / n2;
+            default:
+                return null;
+        }
     }
 }
