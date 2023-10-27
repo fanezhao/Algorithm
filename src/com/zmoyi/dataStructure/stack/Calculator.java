@@ -1,4 +1,4 @@
-package com.zmoyi.data_structure.stack;
+package com.zmoyi.dataStructure.stack;
 
 import java.util.HashMap;
 import java.util.Map;

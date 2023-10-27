@@ -1,4 +1,4 @@
-package com.zmoyi.data_structure.list.lru;
+package com.zmoyi.dataStructure.list.lru;
 
 public class LRUCache {
 
