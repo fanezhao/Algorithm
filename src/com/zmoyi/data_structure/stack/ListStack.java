@@ -1,4 +1,4 @@
-package com.zmoyi.algorithm.栈Stack;
+package com.zmoyi.data_structure.stack;
 
 import com.zmoyi.ListNode;
 

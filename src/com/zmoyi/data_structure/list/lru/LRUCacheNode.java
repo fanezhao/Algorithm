@@ -1,4 +1,4 @@
-package com.zmoyi.algorithm.链表List.LRU;
+package com.zmoyi.data_structure.list.lru;
 
 public class LRUCacheNode {
 

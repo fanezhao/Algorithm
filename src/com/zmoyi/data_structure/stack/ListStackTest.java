@@ -1,17 +1,17 @@
-package com.zmoyi.algorithm.栈Stack;
+package com.zmoyi.data_structure.stack;
 
 /**
  * @author zhaofeng
- * @date 2023/10/22 21:41
+ * @date 2023/10/22 21:53
  * @desc
  */
-public class ArrayStackTest {
+public class ListStackTest {
 
     public static void main(String[] args) {
-        ArrayStack stack = new ArrayStack(10);
-        stack.push("A");
-        stack.push("B");
-        stack.push("C");
+        ListStack stack = new ListStack(2);
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
 
         System.out.println(stack.size());
         System.out.println(stack.pop());
@@ -20,7 +20,7 @@ public class ArrayStackTest {
         System.out.println(stack.size());
         System.out.println(stack.pop());
         System.out.println(stack.size());
-        stack.push("D");
+        stack.push(4);
         System.out.println(stack.size());
     }
 }
