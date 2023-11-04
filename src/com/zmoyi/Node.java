@@ -1,0 +1,23 @@
+package com.zmoyi;
+
+import java.util.List;
+
+/**
+ * @author zhaofeng
+ * @date 2023/11/4 17:36
+ */
+public class Node {
+    public int val;
+    public List<Node> children;
+
+    public Node() {}
+
+    public Node(int _val) {
+        val = _val;
+    }
+
+    public Node(int _val, List<Node> _children) {
+        val = _val;
+        children = _children;
+    }
+}
