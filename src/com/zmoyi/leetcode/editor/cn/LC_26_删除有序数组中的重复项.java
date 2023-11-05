@@ -65,13 +65,15 @@ public class LC_26_删除有序数组中的重复项 {
     public static void main(String[] args) {
         Solution solution = new LC_26_删除有序数组中的重复项().new Solution();
         int[] nums = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
-        System.out.println(solution.removeDuplicates1(nums));
-        System.out.println(solution.removeDuplicates(nums));
+//        System.out.println(solution.removeDuplicates1(nums));
+//        System.out.println(solution.removeDuplicates(nums));
+        System.out.println(solution.removeDuplicates2(nums));
         System.out.println(Arrays.toString(nums));
 
         int[] nums1 = {1,1,2};
         System.out.println(solution.removeDuplicates1(nums1));
         System.out.println(solution.removeDuplicates(nums1));
+        System.out.println(solution.removeDuplicates2(nums1));
         System.out.println(Arrays.toString(nums1));
     }
 
@@ -121,6 +123,19 @@ public class LC_26_删除有序数组中的重复项 {
                 }
             }
             return p;
+        }
+
+        public int removeDuplicates2(int[] nums) {
+            if (nums.length == 0) {
+                return 0;
+            }
+            int slow = 1;
+            for (int fast = 1; fast < nums.length; fast++) {
+                if (nums[fast] != nums[fast - 1]) {
+                    nums[slow++] = nums[fast];
+                }
+            }
+            return slow;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
