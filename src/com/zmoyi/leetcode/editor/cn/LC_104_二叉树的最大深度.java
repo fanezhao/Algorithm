@@ -70,7 +70,7 @@ public class LC_104_二叉树的最大深度 {
          * @param root
          * @return
          */
-        public int maxDepth(TreeNode root) {
+        public int maxDepth2(TreeNode root) {
             int depth = 0;
             if (root == null) {
                 return depth;
@@ -92,6 +92,25 @@ public class LC_104_二叉树的最大深度 {
                 depth++;
             }
             return depth;
+        }
+
+        /**
+         * 求根节点的高度就是二叉树的最大深度
+         * 后序求高，前序求深
+         * @param root
+         * @return
+         */
+        public int maxDepth(TreeNode root) {
+            return getHeight(root);
+        }
+
+        private int getHeight(TreeNode root) {
+            if (root == null) {
+                return 0;
+            }
+            int leftHeight = getHeight(root.left);
+            int rightHeight = getHeight(root.right);
+            return Math.max(leftHeight, rightHeight) + 1;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
