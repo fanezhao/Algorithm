@@ -91,6 +91,22 @@ public class LC_283_移动零 {
                 }
             }
         }
+
+        /**
+         * 双指针
+         * @param nums
+         */
+        public void moveZeroes3(int[] nums) {
+            int slow = 0;
+            for (int fast = 0; fast < nums.length; fast++) {
+                if (nums[fast] != 0) {
+                    int temp = nums[fast];
+                    nums[fast] = nums[slow];
+                    nums[slow] = temp;
+                    slow++;
+                }
+            }
+        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
