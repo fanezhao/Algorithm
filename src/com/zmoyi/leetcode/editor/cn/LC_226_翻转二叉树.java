@@ -100,8 +100,8 @@ public class LC_226_翻转二叉树 {
                 return null;
             }
             swap(root);
-            invertTree(root.left);
-            invertTree(root.right);
+            invertTree2(root.left);
+            invertTree2(root.right);
             return root;
         }
 
