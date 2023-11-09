@@ -63,7 +63,7 @@ class Solution {
 
     /**
      * 思路：二叉树的最大直径其实就是等于左右子树的最大深度，所以我们可以在求最大深度的时候同时更新树的直径
-     * 解法：递归解法
+     * 思维模式：问题分解
      * @param root
      * @return
      */
@@ -85,6 +85,45 @@ class Solution {
         // 判断此时的直径是否是最大直径，并更新
         maxDiameter = Math.max(currDiameter, maxDiameter);
 
+        return Math.max(leftDepth, rightDepth) + 1;
+    }
+
+    /**
+     * 思维模式：遍历
+     * @param root
+     * @return
+     */
+    public int diameterOfBinaryTree2(TreeNode root) {
+        traverse(root);
+        return maxDiameter;
+    }
+
+    /**
+     * 思维模式：遍历
+     * @param root
+     */
+    private void traverse(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        // 进入节点的时候，先分别计算当前节点的左右子树最大深度，重而计算当前节点的最大直径，最后更新整个树的最大直径
+        int leftDepth = maxDepth2(root.left);
+        int rightDepth = maxDepth2(root.right);
+        int currDiameter = leftDepth + rightDepth;
+        maxDiameter = Math.max(currDiameter, maxDiameter);
+
+        // 然后再遍历左右子树
+        traverse(root.left);
+        traverse(root.right);
+    }
+
+    private int maxDepth2(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int leftDepth = maxDepth2(root.left);
+        int rightDepth = maxDepth2(root.right);
         return Math.max(leftDepth, rightDepth) + 1;
     }
 }
