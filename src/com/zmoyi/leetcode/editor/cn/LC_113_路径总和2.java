@@ -110,7 +110,7 @@ class Solution {
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
         ret = new ArrayList<>();
         paths = new ArrayList<>();
-        traverse(root, paths, targetSum);
+        traverse(root, paths, targetSum, 0);
         return ret;
     }
 
@@ -133,6 +133,30 @@ class Solution {
         traverse(root.left, paths, targetSum - root.val);
         traverse(root.right, paths, targetSum - root.val);
         paths.remove(paths.size() - 1); // 回溯
+    }
+
+    /**
+     * 个人解法：不知道这种情况下为什么不行
+     * @param root
+     * @param paths
+     * @param targetSum
+     * @param sum
+     */
+    private void traverse(TreeNode root, List<Integer> paths, Integer targetSum, Integer sum) {
+        if (root == null) {
+            return;
+        }
+        paths.add(root.val);
+        sum += root.val;
+        if (root.left == null && root.right == null) {
+            if (targetSum == sum) {
+                ret.add(new ArrayList<>(paths));
+            }
+        }
+        traverse(root.left, paths, targetSum, sum);
+        traverse(root.right, paths, targetSum, sum);
+        paths.remove(paths.size() - 1); // 回溯
+        sum -= root.val;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
