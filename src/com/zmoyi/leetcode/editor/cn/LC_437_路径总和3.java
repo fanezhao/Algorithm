@@ -39,12 +39,35 @@ package com.zmoyi.leetcode.editor.cn;
 
 import com.zmoyi.TreeNode;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 
 public class LC_437_路径总和3 {
     public static void main(String[] args) {
         Solution solution = new LC_437_路径总和3().new Solution();
+        TreeNode root = new TreeNode(10);
+        TreeNode n5 = new TreeNode(5);
+        TreeNode n_3 = new TreeNode(-3);
+        TreeNode n3 = new TreeNode(3);
+        TreeNode n2 = new TreeNode(2);
+        TreeNode n11 = new TreeNode(11);
+        TreeNode n32 = new TreeNode(3);
+        TreeNode n_2 = new TreeNode(-2);
+        TreeNode n1 = new TreeNode(1);
+
+        root.left = n5;
+        root.right = n_3;
+        n5.left = n3;
+        n5.right = n2;
+        n3.left = n32;
+        n3.right = n_2;
+        n2.right = n1;
+
+        n_3.right = n11;
+
+        System.out.println(solution.pathSum(root, 8));
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 /**
@@ -63,6 +86,49 @@ public class LC_437_路径总和3 {
  * }
  */
 class Solution {
+
+
+    /**
+     * 回溯 + 前缀和
+     *
+     * 前缀和的概念：
+     * 一个节点的前缀和就是该节点到根之间的路径和。
+     * 前缀和的意义：
+     * 因为对于同一路径上的两个节点，上面的节点是下面节点的祖先节点，所以其前缀和之差即是这两个节点间的路径和（不包含祖先节点的值）。
+     * 哈希map的使用：
+     * key是前缀和， value是该前缀和的节点数量，记录数量是因为有出现复数路径的可能。
+     * 回溯的意义：
+     * 因为只有同一条路径上的节点间（节点和其某一祖先节点间）的前缀和做差才有意义。所以当前节点处理完之后，需要从map中移除这一个前缀和，然后再进入下一个分支路径。
+     *
+     * @param root
+     * @param targetSum
+     * @return
+     */
+    public int pathSum(TreeNode root, int targetSum) {
+        if (root == null) {
+            return 0;
+        }
+        prefix.put(0L, 1);
+        traverse(root, targetSum, 0);
+        return count;
+    }
+
+    Map<Long, Integer> prefix = new HashMap<>();
+    int count = 0;
+
+    private void traverse(TreeNode root, long targetSum, long currSum) {
+        if (root == null) {
+            return;
+        }
+        currSum += root.val;
+
+        count += prefix.getOrDefault(currSum - targetSum, 0);
+        prefix.put(currSum, prefix.getOrDefault(currSum, 0) + 1);
+
+        traverse(root.left, targetSum, currSum);
+        traverse(root.right, targetSum, currSum);
+        prefix.put(currSum, prefix.getOrDefault(currSum, 0) - 1);
+    }
 
     int ret = 0;
     int targetSum;
@@ -96,7 +162,7 @@ class Solution {
         return ret;
     }
 
-    private void dfs1(TreeNode root, Integer sum) {
+    private void dfs1(TreeNode root, long sum) {
         if (root == null) {
             return;
         }
@@ -123,7 +189,7 @@ class Solution {
         return ret;
     }
 
-    private void dfs2(TreeNode root, Integer sum) {
+    private void dfs2(TreeNode root, long sum) {
         if (root == null) {
             return;
         }
@@ -156,7 +222,7 @@ class Solution {
         dfs3(root.right);
     }
 
-    private int dfs4(TreeNode root, Integer sum) {
+    private int dfs4(TreeNode root, long sum) {
         if (root == null) {
             return 0;
         }
